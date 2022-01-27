@@ -11,12 +11,11 @@ import Button from "./Button/ApplyButton";
 import ApplyButton from "./Button/ApplyButton";
 import { IAllFiltersState } from "../../interfaces/interfaces";
 import { api } from "../utils/api";
+import { actType, useAxios } from "../CastomHooks/useAxios";
+import { act } from "react-dom/test-utils";
+import NotFound from "../NotFound";
 
 export const Main: FC = () => {
-  const [items, setItems] = useState<IitemsData[]>([]);
-  const [currentPage, setCurrentPage] = useState<number>(0);
-  const [countItems, setCountItems] = useState<number>(0);
-  const [loading, setLoading] = useState<boolean>(false);
   const [allFilters, setAllFilters] = useState<IAllFiltersState>({
     name: "",
     status: "",
@@ -25,34 +24,22 @@ export const Main: FC = () => {
     gender: "",
   });
 
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [type, setType] = useState<actType>(actType.SetPage);
 
+  const { items, isLoading, pageCount, error } = useAxios(
+    type,
+    currentPage,
+    allFilters
+  );
 
-  useEffect(() => {
-    const apiWithCurrentPage =api +`/?page=${currentPage}`;
-    // `https://rickandmortyapi.com/api/character
-    const getItems = async () => {
-      setLoading(true);
-      const itemsData = await axios.get(apiWithCurrentPage);
-      setItems(itemsData.data.results);
-      setLoading(true);
-    };
-    getItems();
-  }, [currentPage]);
+  console.log(pageCount);
 
   function handleChange(event: React.ChangeEvent<unknown>, value: number) {
     setCurrentPage(value);
   }
   function applyFilters() {
-    // `https://rickandmortyapi.com/api/character`
-    const apiWithFilters = api+ `/?page=${currentPage}&name=${allFilters.name}&status=${allFilters.status}&species=${allFilters.species}&type=${allFilters.type}&gender=${allFilters.gender}`;
-
-    const getItems = async () => {
-      setLoading(true);
-      const itemsData = await axios.get(apiWithFilters);
-      setItems(itemsData.data.results);
-      setLoading(true);
-    };
-    getItems();
+    setType(actType.ApplyFilters);
   }
 
   function onChange(name: string, value: string) {
@@ -60,19 +47,25 @@ export const Main: FC = () => {
   }
 
   return (
-    <main className="main">
-      <Filter onChange={onChange} />
-      <ApplyButton applyFilters={applyFilters} />
+    <div>
+      {error ? (
+        <NotFound />
+      ) : (
+        <main className="main">
+          <Filter onChange={onChange} />
+          <ApplyButton applyFilters={applyFilters} />
 
-      <CardsPage items={items} loading={loading} />
-      <div style={{ marginTop: "7rem" }}>
-        <Pagination
-          count={42}
-          page={currentPage}
-          onChange={handleChange}
-          size="large"
-        />
-      </div>
-    </main>
+          <CardsPage items={items} loading={isLoading} />
+          <div style={{ marginTop: "7rem" }}>
+            <Pagination
+              count={42}
+              page={currentPage}
+              onChange={handleChange}
+              size="large"
+            />
+          </div>
+        </main>
+      )}
+    </div>
   );
 };
