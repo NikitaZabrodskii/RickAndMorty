@@ -45,3 +45,7 @@ export interface IAllFiltersState{
   gender:string;
 
 }
+
+export interface IApplyButtonProps{
+  applyFilters:()=>void
+}

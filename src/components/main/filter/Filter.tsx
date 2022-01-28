@@ -3,7 +3,7 @@ import { FC } from "react";
 import SelectItem from "./SelectItem";
 
 
-export default function Filter(props:any) {
+export  function Filter(props:any) {
 const {onChange} = props;
  
 
