@@ -1,11 +1,10 @@
 import React from "react";
-import { FC } from "react";
-import './title.scss'
+import "./Title.scss";
 
-import png from '../../../img/pngegg.png';
+import png from "../../../img/pngegg.png";
 
-export const Title: FC = () => {
+export const Title = () => {
   return (
-    <img src={png} alt="logo" height={300} width={900} className="title"/>
+    <img src={png} alt="logo" height={300} width={900} className="title" />
   );
 };

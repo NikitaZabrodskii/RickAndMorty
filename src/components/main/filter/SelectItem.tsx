@@ -1,6 +1,4 @@
-import React, { FC } from "react";
-import { useState } from "react";
-import "./select.scss";
+import "./Select.scss";
 import {
   FormControl,
   InputLabel,
@@ -8,19 +6,11 @@ import {
   MenuItem,
   TextField,
 } from "@mui/material";
-import {
-  IAllFiltersState,
-  IPropsSelectedItem,
-} from "../../../interfaces/interfaces";
+import { IPropsSelectedItem } from "../../../interfaces/interfaces";
 
-export default function SelectItem({ values,onChange }: IPropsSelectedItem) {
-
-
-
-  function changeFilters(e:any){
-    onChange( e.target.name ,e.target.value)
-   
-    
+export  function SelectItem({ values, onChange }: IPropsSelectedItem) {
+  function changeFilters(e: any) {
+    onChange(e.target.name, e.target.value);
   }
 
   return (
@@ -31,6 +21,7 @@ export default function SelectItem({ values,onChange }: IPropsSelectedItem) {
             <InputLabel
               id="demo-simple-select-label"
               style={{ fontSize: "18px" }}
+              
             >
               {val.category}
             </InputLabel>
@@ -44,7 +35,11 @@ export default function SelectItem({ values,onChange }: IPropsSelectedItem) {
             >
               {val.options
                 ? val.options.map((opt) => (
-                    <MenuItem value={opt} style={{ fontSize: "20px" }} key={opt}>
+                    <MenuItem
+                      value={opt}
+                      style={{ fontSize: "20px" }}
+                      key={opt}
+                    >
                       {opt}
                     </MenuItem>
                   ))
@@ -63,8 +58,6 @@ export default function SelectItem({ values,onChange }: IPropsSelectedItem) {
           />
         )
       )}
-
- 
     </div>
   );
 }

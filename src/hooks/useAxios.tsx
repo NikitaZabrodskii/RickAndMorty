@@ -17,7 +17,7 @@ export function useAxios(setItems: any) {
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   useEffect(() => {
-    fetchItems();
+    getItems();
   }, [currentPage]);
 
   function changeFilters(name: string, value: string): void {
@@ -42,7 +42,7 @@ export function useAxios(setItems: any) {
     return urlToFetch;
   }
 
-  async function fetchItems() {
+  async function getItems() {
     const urlToFetch = getUrlToFetch();
 
     try {
@@ -50,11 +50,15 @@ export function useAxios(setItems: any) {
       const itemsData = await axios.get(urlToFetch);
       setItems(itemsData.data.results);
       setPageCount(itemsData.data.info.pages);
+      setLoading(false);
 
-      setLoading(true);
+     
     } catch (e) {
       setError(true);
+      setLoading(false);
+    
     }
+  
   }
 
   return {
@@ -62,7 +66,7 @@ export function useAxios(setItems: any) {
     error,
     pageCount,
     changeFilters,
-    fetchItems,
+    getItems,
     changePage,
     currentPage,
   };

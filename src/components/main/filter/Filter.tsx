@@ -1,13 +1,11 @@
-import { useState } from "react";
-import { FC } from "react";
-import SelectItem from "./SelectItem";
+import React from "react";
+import { IFilterProps, IValues } from "../../../interfaces/interfaces";
+import { SelectItem } from "./SelectItem";
 
+export function Filter(props: IFilterProps) {
+  const { onChange } = props;
 
-export  function Filter(props:any) {
-const {onChange} = props;
- 
-
-  const values = [
+  const values:IValues[] = [
     { category: "name", type: "input" },
     {
       category: "status",
@@ -25,15 +23,9 @@ const {onChange} = props;
     },
   ];
 
-
-  
- 
-
-
-
   return (
     <div className="filter">
-      <SelectItem values={values} onChange={onChange}/>
+      <SelectItem values={values} onChange={onChange} />
     </div>
   );
 }
