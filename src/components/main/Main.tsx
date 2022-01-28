@@ -7,50 +7,42 @@ import { IitemsData } from "../../interfaces/interfaces";
 import { CardsPage } from "./card/CardsPage";
 import { Pagination } from "@mui/material";
 import Filter from "./filter/Filter";
-import Button from "./Button/ApplyButton";
+
 import ApplyButton from "./Button/ApplyButton";
-import { IAllFiltersState } from "../../interfaces/interfaces";
-import { api } from "../utils/api";
-import { actType, useAxios } from "../CastomHooks/useAxios";
-import { act } from "react-dom/test-utils";
+
+import { useAxios } from "../CastomHooks/useAxios";
+
 import NotFound from "../NotFound";
 
 export const Main: FC = () => {
-  const [allFilters, setAllFilters] = useState<IAllFiltersState>({
-    name: "",
-    status: "",
-    species: "",
-    type: "",
-    gender: "",
-  });
-
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [type, setType] = useState<actType>(actType.SetPage);
-
-  const { items, isLoading, pageCount, error } = useAxios(
-    type,
+  const [items, setItems] = useState<IitemsData[]>([]);
+  const {
+    isLoading,
+    pageCount,
+    error,
+    changeFilters,
+    applyAllFilters,
+    changePage,
     currentPage,
-    allFilters
-  );
+  } = useAxios(setItems);
+  
 
-  console.log(pageCount);
 
-  function handleChange(event: React.ChangeEvent<unknown>, value: number) {
-    setCurrentPage(value);
+  function changeCurrentPage(event: React.ChangeEvent<unknown>, value: number) {
+    changePage(event, value);
   }
   function applyFilters() {
-    setType(actType.ApplyFilters);
+    applyAllFilters();
   }
 
+
   function onChange(name: string, value: string) {
-    setAllFilters((prev) => ({ ...prev, [name]: value }));
+    changeFilters(name, value);
   }
 
   return (
     <div>
-      {error ? (
-        <NotFound />
-      ) : (
+  
         <main className="main">
           <Filter onChange={onChange} />
           <ApplyButton applyFilters={applyFilters} />
@@ -60,12 +52,12 @@ export const Main: FC = () => {
             <Pagination
               count={42}
               page={currentPage}
-              onChange={handleChange}
+              onChange={changeCurrentPage}
               size="large"
             />
           </div>
         </main>
-      )}
+    
     </div>
   );
 };
