@@ -6,7 +6,7 @@ import { CardsPage } from "./Card";
 import { Filter } from './Filter'
 import { ApplyButton } from "./Button";
 import { useAxios } from "../../hooks/useAxios";
-import { NotFound } from "../NotFound";
+import { NotFound } from "./NotFound";
 
 export const Main: FC = () => {
   const [items, setItems] = useState<IitemsData[]>([]);
