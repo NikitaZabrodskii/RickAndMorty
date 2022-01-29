@@ -6,6 +6,7 @@ import { CardsPage } from "./Card";
 import { Filter } from './Filter'
 import { ApplyButton } from "./Button";
 import { useAxios } from "../../hooks/useAxios";
+import { NotFound } from "../NotFound/NotFound";
 
 export const Main: FC = () => {
   const [items, setItems] = useState<IitemsData[]>([]);
@@ -36,7 +37,11 @@ export const Main: FC = () => {
       <Filter onChange={onChange} />
       <ApplyButton applyFilters={applyFilters} />
 
-      <CardsPage items={items} />
+
+      {error?<NotFound/> : <CardsPage items={items} /> }
+    
+
+     
       <div style={{ marginTop: "7rem" }}>
         <Pagination
           count={pageCount}

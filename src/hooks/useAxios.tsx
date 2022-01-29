@@ -1,6 +1,6 @@
 import axios from "axios";
 import { IAllFiltersState, IitemsData } from "../interfaces/interfaces";
-import { baseApiUrl } from '../utils/api'
+import { baseApiUrl } from "../utils/api";
 import { useState, useEffect } from "react";
 
 export function useAxios(setItems: any) {
@@ -44,21 +44,18 @@ export function useAxios(setItems: any) {
 
   async function getItems() {
     const urlToFetch = getUrlToFetch();
+    setError(false);
+    setLoading(true);
 
     try {
-      setLoading(true);
       const itemsData = await axios.get(urlToFetch);
       setItems(itemsData.data.results);
       setPageCount(itemsData.data.info.pages);
-      setLoading(false);
-
-     
     } catch (e) {
       setError(true);
       setLoading(false);
-    
+      setPageCount(0);
     }
-  
   }
 
   return {
