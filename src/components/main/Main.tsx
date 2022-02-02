@@ -2,7 +2,7 @@ import React, { FC, useState } from "react";
 import { Pagination } from "@mui/material";
 
 import { IitemsData } from "../../interfaces/interfaces";
-import { CardsPage } from "./Card";
+import { CardsPage } from "./Сard";
 import { Filter } from './Filter'
 import { ApplyButton } from "./Button";
 import { useAxios } from "../../hooks/useAxios";
