@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import './Cardstyles.scss';
+import styles from './Card.module.scss';
+import cx from 'classnames';
 
 
 
@@ -23,27 +24,27 @@ export const Card: React.FC<ICardProps> = ({
   }
 
   return (
-    <div className="card">
-      <div className="card__side card__side--front">
-        <img src={image} alt="img" className="img" />
-        <div className="inform">
-          <p className="inform__name">{name}</p>
-          <p className="inform__gender">gender: {gender}</p>
-          <p className="inform__status">
+    <div className={styles.card}>
+      <div className={cx(styles.side,styles.sideFront)}>
+        <img src={image} alt="img" className={styles.cardImg} />
+        <div className={styles.cardInform}>
+          <p className={styles.informName}>{name}</p>
+          <p className={styles.informGender}>gender: {gender}</p>
+          <p >
             status:{" "}
             <span style={{ color: status === "Alive" ? "green" : "red" }}>
               {status}{" "}
             </span>{" "}
           </p>
-          <p className="inform__type">{type === "" ? "" : `type: ${type}`}</p>
+          <p >{type === "" ? "" : `type: ${type}`}</p>
         </div>
       </div>
       ;
-      <div className="card__side card__side--back">
-        <div className="background-image">
+      <div className={cx(styles.side,styles.sideBack)}>
+        <div className={styles.backgroundImage}>
           <img src={backgroundImg} alt="" height={460} width={300} />
         </div>
-        <div className="button" onClick={openModal}>
+        <div className={styles.button} onClick={openModal}>
           Read Details!
         </div>
       </div>

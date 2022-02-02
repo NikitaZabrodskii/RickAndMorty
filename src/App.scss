@@ -48,12 +48,7 @@ body {
   color: var(--color-black);
   background-color: var(--color-background);
 }
-.inform {
-  color: var(--color-white);
-  font-size: var(--font-size-medium);
-  &__name {
-  }
-}
+
 .heading-secondary {
   display: inline-block;
   text-transform: uppercase;
@@ -75,6 +70,9 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.pagination {
+  margin-top: 7rem;
 }
 
 .main {

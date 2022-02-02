@@ -1,4 +1,4 @@
-import "./Select.scss";
+import styles from './Select.module.scss';
 
 import {
   FormControl,
@@ -15,7 +15,7 @@ export  function SelectItem({ values, onChange }: IPropsSelectedItem) {
   }
 
   return (
-    <div className="selectItem">
+    <div className={styles.selectItem}>
       {values.map((val) =>
         val.type === "select" ? (
           <FormControl fullWidth style={{ width: "150px" }} key={val.category}>

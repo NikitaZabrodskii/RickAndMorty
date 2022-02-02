@@ -1,10 +1,11 @@
 import React from "react";
-import "./Title.scss";
+import styles from "./Title.module.scss";
 
 import png from "../../../img/pngegg.png";
 
+
 export const Title = () => {
   return (
-    <img src={png} alt="logo" height={300} width={900} className="title" />
+    <img src={png} alt="logo" height={300} width={900} className={styles.title} />
   );
 };

@@ -42,7 +42,7 @@ export const Main: FC = () => {
     
 
      
-      <div style={{ marginTop: "7rem" }}>
+      <div className="pagination">
         <Pagination
           count={pageCount}
           page={currentPage}

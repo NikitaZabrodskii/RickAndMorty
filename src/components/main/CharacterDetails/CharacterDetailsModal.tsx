@@ -2,7 +2,7 @@ import { Box, Dialog } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-import "./CharacterDetailsModal.scss";
+import styles from  "./CharacterDetails.module.scss";
 import { ICharacterDetailsModalProps } from "../../../interfaces/interfaces";
 import { IitemsData } from "../../../interfaces/interfaces";
 import { baseApiUrl } from "../../../utils/api";
@@ -56,30 +56,30 @@ export const CharacterDetailsModal: React.FC<ICharacterDetailsModalProps> = ({
         },
       }}
     >
-      <Box className="character-modal">
+      <Box className={styles.characterModal}>
         {character ? (
           <>
-            <h2 className="character-modal__title">{character.name}</h2>
-            <ul className="character-modal__description-list">
-              <li className="character-modal__description-item">
+            <h2 className={styles.title}>{character.name}</h2>
+            <ul className={styles.descriptionList}>
+              <li className={styles.descriptionItem}>
                 <strong>Status:</strong> {character.status}
               </li>
-              <li className="character-modal__description-item">
+              <li className={styles.descriptionItem}>
                 <strong>Species:</strong> {character.species}
               </li>
-              <li className="character-modal__description-item">
+              <li className={styles.descriptionItem}>
                 <strong>Type:</strong> {character.type}
               </li>
-              <li className="character-modal__description-item">
+              <li className={styles.descriptionItem}>
                 <strong>Gender:</strong> {character.gender}
               </li>
-              <li className="character-modal__description-item">
+              <li className={styles.descriptionItem}>
                 <strong>Origin:</strong> {character.origin?.name}
               </li>
             </ul>
           </>
         ) : (
-          <h2 className="character-modal__title">Loading...</h2>
+          <h2 className={styles.title}>Loading...</h2>
         )}
       </Box>
     </Dialog>

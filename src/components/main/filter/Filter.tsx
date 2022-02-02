@@ -24,7 +24,7 @@ export function Filter(props: IFilterProps) {
   ];
 
   return (
-    <div className="filter">
+    <div >
       <SelectItem values={values} onChange={onChange} />
     </div>
   );
