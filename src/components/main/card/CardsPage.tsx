@@ -1,6 +1,7 @@
 import React from "react";
-import { FC } from "react";
-import "./Card.scss";
+import './Cardstyles.scss'
+
+
 
 import { ICardPageProps, } from "../../../interfaces/interfaces";
 import { Card } from "./Card";
@@ -26,3 +27,5 @@ export const CardsPage: React.FC<ICardPageProps> = ({
     </div>
   );
 };
+
+

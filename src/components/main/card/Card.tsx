@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { FC } from "react";
-import "./Card.scss";
+import './Cardstyles.scss';
+
+
 
 import { ICardProps } from "../../../interfaces/interfaces";
 import backgroundImg from "../../../img/37541.jpg";

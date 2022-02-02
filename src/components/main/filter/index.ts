@@ -1,3 +1,3 @@
-export * from './Filter';
-export * from './SelectItem';
+export {Filter} from './Filter';
+
 
